@@ -27,8 +27,20 @@
     <label class="col-sm-3 col-form-label">Agregar</label>
     <div class="col-sm-9">
       <div class="input-group">
-        <input class="form-control" placeholder="Agregar favorito" />
-        <button type="button" class="btn btn-outline-primary">Agregar</button>
+        <input
+          class="form-control"
+          placeholder="Agregar favorito"
+          [(ngModel)]="nuevoJuego"
+          name="nuevoJuego"
+          (keyup.enter)="agregarJuego()"
+        />
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          (click)="agregarJuego()"
+        >
+          Agregar
+        </button>
       </div>
     </div>
   </div>
@@ -47,7 +59,13 @@
           class="form-control"
           required
         />
-        <button class="btn btn-outline-danger" type="button" (click)="eliminar(i)">Eliminar</button>
+        <button
+          class="btn btn-outline-danger"
+          type="button"
+          (click)="eliminar(i)"
+        >
+          Eliminar
+        </button>
       </div>
     </div>
   </div>
