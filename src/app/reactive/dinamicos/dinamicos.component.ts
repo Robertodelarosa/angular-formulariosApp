@@ -15,7 +15,7 @@ export class DinamicosComponent implements OnInit {
     favoritos: this.fb.array([
       ['Metal Gear', Validators.required],
       ['Halo', Validators.required]
-    ], Validators.required)
+    ], [Validators.required, Validators.minLength(2)])
   })
 
   nuevoFavorito: FormControl = this.fb.control('', Validators.required);
@@ -39,6 +39,10 @@ export class DinamicosComponent implements OnInit {
     // this.favoritosArr.push(new FormControl(this.nuevoFavorito.value, Validators.required))
     this.favoritosArr.push(this.fb.control(this.nuevoFavorito.value, Validators.required))
     this.nuevoFavorito.reset();
+  }
+
+  eliminarFavorito(index: number) {
+    this.favoritosArr.removeAt(index);
   }
 
   guardar() {
