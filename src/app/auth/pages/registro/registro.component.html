@@ -87,14 +87,21 @@
       </div>
       <div class="row">
         <div class="col">
-          <button type="submit" class="btn btn-primary float-end">Crear</button>
+          <button
+            type="submit"
+            [disabled]="miFormulario.pending"
+            class="btn btn-primary float-end"
+          >
+            Crear
+          </button>
         </div>
       </div>
     </form>
   </div>
 </div>
 <h2>Form Valid: {{ miFormulario.valid }}</h2>
-
+<h2>Form Status: {{ miFormulario.status }}</h2>
+<h2>Form Pending: {{ miFormulario.pending }}</h2>
 <h2>Form Errors</h2>
 <pre>{{ miFormulario.errors | json }} </pre>
 
