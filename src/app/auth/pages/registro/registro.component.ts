@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-registro',
@@ -12,6 +12,14 @@ export class RegistroComponent implements OnInit {
   nombreApellidoPattern: string = '([a-zA-Z]+) ([a-zA-Z]+)';
   emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
 
+  noPuedeSerRollingTunder(control: FormControl) {
+    const valor: string = control.value?.trim().toLowerCase();
+    if (valor === 'rollingtunder') {
+      return { noRollingTunder: true }
+    }
+    return null;
+  }
+
   miFormulario: FormGroup = this.fb.group({
     nombre: ['', [
       Validators.required,
@@ -20,6 +28,10 @@ export class RegistroComponent implements OnInit {
     email: ['', [
       Validators.required,
       Validators.pattern(this.emailPattern)
+    ]],
+    username: ['', [
+      Validators.required,
+      this.noPuedeSerRollingTunder
     ]]
   })
 
@@ -28,7 +40,8 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {
     this.miFormulario.reset({
       nombre: 'Roberto delaRosa',
-      email: 'robertodelarosa117@gmail.com'
+      email: 'robertodelarosa117@gmail.com',
+      username: 'roberto117'
     })
   }
 

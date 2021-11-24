@@ -44,8 +44,12 @@
           <input
             type="text"
             class="form-control"
+            formControlName="username"
             placeholder="Nombre código del usuario"
           />
+          <span class="form-text text-danger" *ngIf="campoNoValido('username')">
+            El username no puede ser RollingTunder
+          </span>
         </div>
       </div>
       <!-- Password -->
@@ -84,3 +88,6 @@
 
 <h5>Email</h5>
 <pre>{{ miFormulario.controls["email"].errors | json }}</pre>
+
+<h5>Username</h5>
+<pre>{{ miFormulario.controls["username"].errors | json }}</pre>
