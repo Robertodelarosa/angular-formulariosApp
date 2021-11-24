@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ValidatorService } from 'src/app/shared/validator/validator.service';
 
 @Component({
   selector: 'app-registro',
@@ -9,33 +10,22 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 })
 export class RegistroComponent implements OnInit {
 
-  nombreApellidoPattern: string = '([a-zA-Z]+) ([a-zA-Z]+)';
-  emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
-
-  noPuedeSerRollingTunder(control: FormControl) {
-    const valor: string = control.value?.trim().toLowerCase();
-    if (valor === 'rollingtunder') {
-      return { noRollingTunder: true }
-    }
-    return null;
-  }
-
   miFormulario: FormGroup = this.fb.group({
     nombre: ['', [
       Validators.required,
-      Validators.pattern(this.nombreApellidoPattern)
+      Validators.pattern(this.validatorService.nombreApellidoPattern)
     ]],
     email: ['', [
       Validators.required,
-      Validators.pattern(this.emailPattern)
+      Validators.pattern(this.validatorService.emailPattern)
     ]],
     username: ['', [
       Validators.required,
-      this.noPuedeSerRollingTunder
+      this.validatorService.noPuedeSerRollingTunder
     ]]
   })
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private validatorService: ValidatorService) { }
 
   ngOnInit(): void {
     this.miFormulario.reset({
