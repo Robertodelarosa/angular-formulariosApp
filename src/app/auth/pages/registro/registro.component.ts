@@ -22,7 +22,16 @@ export class RegistroComponent implements OnInit {
     username: ['', [
       Validators.required,
       this.validatorService.noPuedeSerRollingTunder
+    ]],
+    password: ['', [
+      Validators.required,
+      Validators.minLength(6)
+    ]],
+    password2: ['', [
+      Validators.required,
     ]]
+  }, {
+    validators: [this.validatorService.camposIguales('password', 'password2')]
   })
 
   constructor(private fb: FormBuilder, private validatorService: ValidatorService) { }
