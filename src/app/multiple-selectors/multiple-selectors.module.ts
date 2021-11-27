@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveSelectorsComponent } from './reactive-selectors/reactive-selectors.component';
 import { multipleSelectorRoutingModule } from './multiple-selectors-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -9,6 +10,7 @@ import { multipleSelectorRoutingModule } from './multiple-selectors-routing.modu
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     multipleSelectorRoutingModule
   ]
 })
