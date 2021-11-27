@@ -1,20 +1,48 @@
 <h2>Selectores Anidados</h2>
 <hr />
-<div class="col">
+<form (ngSubmit)="guardar()" [formGroup]="miFormulario">
   <div class="row">
-    <form>
+    <div class="col">
       <label for="idContinente" class="form-label">Continente: </label>
-      <select id="idContinente" class="form-select">
+      <select
+        id="idContinente"
+        class="form-select"
+        formControlName="continente"
+      >
         <option value="">-- Seleccione Continente --</option>
+        <option [value]="continente" *ngFor="let continente of continentes">
+          {{ continente }}
+        </option>
       </select>
-      <label for="idPais" class="form-label">País: </label>
-      <select id="idPais" class="form-select">
-        <option value="">-- Seleccione País --</option>
-      </select>
-      <label for="idFronteras" class="form-label">Fronteras: </label>
-      <select id="idFronteras" class="form-select">
-        <option value="">-- Seleccione Fronteras --</option>
-      </select>
-    </form>
+    </div>
   </div>
-</div>
+  <div class="row">
+    <div class="col">
+      <label for="idPais" class="form-label">País: </label>
+      <select id="idPais" class="form-select" formControlName="pais">
+        <option value="">-- Seleccione País --</option>
+        <option [value]="pais.cca2" *ngFor="let pais of paises">
+          {{ pais.name.common }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="idFronteras" class="form-label">Frontera: </label>
+      <select id="idFronteras" class="form-select" formControlName="frontera">
+        <option value="">-- Seleccione Frontera --</option>
+        <option [value]="frontera.cca2" *ngFor="let frontera of fronteras">
+          {{ frontera.name.common }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button type="submit" class="btn btn-primary float-end">
+        Seleccionar
+      </button>
+    </div>
+  </div>
+</form>
