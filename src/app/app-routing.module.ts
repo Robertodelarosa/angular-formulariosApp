@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () => import('./reactive/reactive.module').then(m => m.ReactiveModule)
   },
   {
+    path: 'reactive-selectors',
+    loadChildren: () => import('./multiple-selectors/multiple-selectors.module').then(m => m.MultipleSelectorsModule)
+  },
+  {
     path: '**',
     redirectTo: 'template'
   }

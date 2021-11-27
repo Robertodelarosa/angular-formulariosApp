@@ -57,4 +57,11 @@ export class SideMenuComponent {
       ruta: './auth/login'
     }
   ]
+
+  reactiveSeletors: MenuItem[] = [
+    {
+      texto: 'Selectores Reactivos',
+      ruta: './reactive-selectors'
+    }
+  ]
 }
